@@ -10,7 +10,68 @@
         добавление элемента в очередь
         извлечение элемента из очереди
 */
-        
+        class Stack{
+
+            constructor(){
+                this.arr = []
+            }
+
+            push(element){
+                this.arr.push(element)
+            }
+
+            pop(){
+                return this.arr.pop()
+            }
+        }
+
+        class CycleQueue{
+
+            constructor(size){
+                this.size = size
+                this.arr = new Array(size)
+                this.start = -1
+                this.end = -1
+            }
+
+            isEmpty(){
+                return this.start == -1 
+            }
+
+            isFull(){
+                return (this.start == this.end + 1) || (this.start == 0 && this.end == this.size - 1)
+            }
+
+            push(element){
+                if(this.isFull()){
+                    alert("Очередь заполнена")
+                }
+                else{
+                    if(this.start == -1){
+                        this.start = 0
+                    }
+                    this.end = (this.end + 1) % this.size
+                    this.arr[this.end] = element
+                }
+            }
+
+            shift(){
+                if(this.isEmpty()){
+                    return "Очередь пуста"
+                }
+                else{
+                    let element = this.arr[this.start]
+                    if(this.start == this.end){
+                        this.start = -1
+                        this.end = -1
+                    }
+                    else{
+                        this.start = (this.start + 1) % this.size
+                    }
+                    return element
+                }
+            }
+        }
     </script>
 </head>
 <body>

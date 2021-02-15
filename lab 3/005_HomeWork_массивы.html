@@ -17,22 +17,41 @@
             }
 
             isEmpty(){
-                return this.start == -1 && this.end == -1
+                return this.start == -1 
+            }
+
+            isFull(){
+                return (this.start == this.end + 1) || (this.start == 0 && this.end == this.size - 1)
             }
 
             push(element){
-                if(this.isEmpty()){
-                    this.end = 0
-                    this.start = 0
+                if(this.isFull()){
+                    alert("Очередь заполнена")
                 }
-                if(this.end >= this.size){
-                    this.end = 0
+                else{
+                    if(this.start == -1){
+                        this.start = 0
+                    }
+                    this.end = (this.end + 1) % this.size
+                    this.arr[this.end] = element
                 }
-                this.arr[this.end++] = element
             }
 
             shift(){
-                return this.isEmpty() ? "Очередь пуста": this.arr[this.start++]
+                if(this.isEmpty()){
+                    return "Очередь пуста"
+                }
+                else{
+                    let element = this.arr[this.start]
+                    if(this.start == this.end){
+                        this.start = -1
+                        this.end = -1
+                    }
+                    else{
+                        this.start = (this.start + 1) % this.size
+                    }
+                    return element
+                }
             }
         }
 
