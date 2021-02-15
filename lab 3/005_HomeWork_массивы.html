@@ -1,0 +1,52 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <script type="text/javascript">
+/*
+    Написать код программной модели циклической очереди
+*/
+        class CycleQueue{
+
+            constructor(size){
+                this.size = size
+                this.arr = new Array(size)
+                this.start = -1
+                this.end = -1
+            }
+
+            isEmpty(){
+                return this.start == -1 && this.end == -1
+            }
+
+            push(element){
+                if(this.isEmpty()){
+                    this.end = 0
+                    this.start = 0
+                }
+                if(this.end >= this.size){
+                    this.end = 0
+                }
+                this.arr[this.end++] = element
+            }
+
+            shift(){
+                return this.isEmpty() ? "Очередь пуста": this.arr[this.start++]
+            }
+        }
+
+        let myQueue = new CycleQueue(5)
+        myQueue.push(3)
+        myQueue.push(5)
+        myQueue.push(7)
+
+        alert(myQueue.shift())
+        alert(myQueue.shift())
+        alert(myQueue.shift())
+        alert(myQueue.shift())
+    </script>
+</head>
+<body>
+</body>
+</html>

@@ -1,0 +1,48 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <script type="text/javascript">
+/*
+    Создать функции двух аргументов:
+        сложения,
+        вычитания,
+        умножения,
+        деления.
+    В каждой функции предусмотреть вывод результата в окне браузера в формате:
+        a + b = 8
+        a - b = 3
+        a * b = 16
+        a / b = 2
+        Попытка деления на 0.
+*/
+        function sum(val_1, val_2){
+            return val_1 + val_2
+        }
+
+        function difference(val_1, val_2){
+            return val_1 - val_2
+        }
+
+        function multiply(val_1, val_2){
+            return val_1 * val_2
+        }
+        
+        function division(val_1, val_2){
+            if(val_2 == 0){
+                return("Деление на 0")
+            }
+            return val_1 / val_2
+        }
+
+        alert("a + b = " + sum(3, 5))
+        alert("a - b = " + difference(5, 2))
+        alert("a * b = " + multiply(4, 4))
+        alert("a / b = " + division(8, 4))
+
+        alert("a / 0 = " + division(8, 0))
+    </script>
+</head>
+<body>
+</body>
+</html>
