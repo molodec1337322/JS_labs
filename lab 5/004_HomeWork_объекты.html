@@ -1,0 +1,64 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+</head>
+<body>
+
+    <script type="text/javascript">
+/*
+    Создать программную модель циклической очереди, используя объектно-ориентированный подход
+*/
+        class CycleQueue{
+
+            constructor(size){
+                this.size = size
+                this.arr = new Array(size)
+                this.start = -1
+                this.end = -1
+            }
+
+            isEmpty(){
+                return this.start == -1 
+            }
+
+            isFull(){
+                return (this.start == this.end + 1) || (this.start == 0 && this.end == this.size - 1)
+            }
+
+            push(element){
+                if(this.isFull()){
+                    alert("Очередь заполнена")
+                }
+                else{
+                    if(this.start == -1){
+                        this.start = 0
+                    }
+                    this.end = (this.end + 1) % this.size
+                    this.arr[this.end] = element
+                }
+            }
+
+            shift(){
+                if(this.isEmpty()){
+                    return "Очередь пуста"
+                }
+                else{
+                    let element = this.arr[this.start]
+                    if(this.start == this.end){
+                        this.start = -1
+                        this.end = -1
+                    }
+                    else{
+                        this.start = (this.start + 1) % this.size
+                    }
+                    return element
+                }
+            }
+        }
+    </script>
+
+
+</body>
+</html>

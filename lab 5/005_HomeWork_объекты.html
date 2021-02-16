@@ -1,0 +1,107 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+</head>
+<body>
+
+    <script type="text/javascript">
+/*
+    Создать программную модель двусвязного списка, используя объектно-ориентированный подход
+*/
+        class DoublyLinkedListNode{
+
+            constructor(val, next = null, previous = null){
+                this.val = val
+                this.next
+                this.previous
+                this.length = 0
+            }
+        }
+
+        class DoubleLinkedList{
+            constructor(){
+                this.head = null
+                this.tail = null
+            }
+
+            prepend(val){
+                const newNode = new DoublyLinkedListNode(val, this.head)
+
+                if(this.head){
+                    this.head.previous = newNode
+                }
+
+                this.head = newNode
+
+                if(!this.tail){
+                    this.tail = newNode
+                }
+                this.size++
+            }
+
+            append(val){
+                const newNode = new DoublyLinkedListNode(val);
+
+                if (this.tail) {
+                    this.tail.next = newNode;
+                }
+
+                newNode.previous = this.tail;
+
+                this.tail = newNode;
+
+                if (!this.head) {
+                    this.head = newNode;
+                }
+                this.size++
+            }
+
+            delete(index){
+                if(index < 0 || index > this.size){
+                    throw new RangeError("Выход за пределы списка")
+                }
+
+                let currentNode = this.head
+                for(let i = 0; i < index; i++){
+                    currentNode = currentNode.next
+                }
+
+                currentNode.previous.next = currentNode.next
+                currentNode.next.previous = currentNode.previous
+                currentNode = null
+            }
+
+            get(index){
+                if(index < 0 || index > this.size){
+                    throw new RangeError("Выход за пределы списка")
+                }
+
+                let currentNode = this.head
+                for(let i = 0; i < index; i++){
+                    currentNode = currentNode.next
+                }
+
+                return currentNode
+            }
+        }
+
+        let myList = new DoubleLinkedList()
+        myList.append(1)
+        myList.append(2)
+        myList.append(3)
+
+        alert(myList.get(0).val)
+        alert(myList.get(1).val)
+        alert(myList.get(2).val) 
+
+        myList.delete(1)
+
+        alert(myList.get(0).val)
+        alert(myList.get(1).val)
+    </script>
+
+
+</body>
+</html>
