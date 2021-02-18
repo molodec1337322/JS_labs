@@ -1,0 +1,111 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+    <title>Stack</title>
+    <script type="text/javascript">
+
+        class Stack{
+
+            constructor(){
+                this.arr = []
+                this.top = -1
+            }
+
+            push(element){
+                this.top++
+                this.arr.push(element)
+            }
+
+            pop(){
+                this.top--
+                return this.arr.pop()
+            }
+
+            getAll(){
+                return this.arr
+            }
+        }
+
+        
+        function draw() {
+            var canvas = document.getElementById('canvas');
+            if (canvas.getContext) {
+                var ctx = canvas.getContext('2d');
+
+                ctx.strokeRect(10, 540, 200, 0)
+            }
+        }
+    </script>
+</head>
+<body onload="draw();">
+    <div>
+        <canvas id="canvas" width="600" height="600"></canvas>
+    </div>
+    <div class="input">
+        <div>
+            <fieldset>
+                <form action="">
+                    Введите числовое значение: <input type="text" id="inputField" required>
+                    <input type="button" name="addButton" value="Add" id="addButton">
+                </form>
+            </fieldset>
+            <fieldset>
+                <input type="button" name="deleteButton" value="Delete" id="deleteButton">
+            </fieldset>
+        </div>
+        <div>
+            Текущее возвращённое значение:
+        </div>
+        <div id="output">
+
+        </div>
+    </div>
+    <script type="text/javascript">
+
+        const x = 110
+        let start = 500
+        const stack = new Stack()
+
+        const addButton = document.getElementById("addButton")
+        const deleteButton = document.getElementById("deleteButton")
+        const inputField = document.getElementById("inputField")
+        const output = document.getElementById("output")
+
+        function add() {
+            var element = inputField.value
+            if (element != "") {
+                stack.push(element)
+                
+                var canvas = document.getElementById('canvas');
+                if (canvas.getContext) {
+                    var ctx = canvas.getContext('2d');
+
+                    ctx.strokeStyle = 'rgb(0, 0, 0)';
+                    ctx.strokeRect(10, start, 200, 40);
+                    ctx.fillText(element, x, start + 20);
+                    start -= 40 
+                }
+            }
+        }
+
+        function del() {
+            f = stack.pop()
+            if (f != undefined) {
+                var canvas = document.getElementById('canvas');
+                if (canvas.getContext) {
+                    var ctx = canvas.getContext('2d');
+                    ctx.clearRect(5, start + 35, 210, 44)
+                    start += 40
+                }
+                output.innerHTML = f
+            }
+        }
+
+        addButton.onclick = add
+        deleteButton.onclick = del
+
+    </script>
+</body>
+</html>
